@@ -18,4 +18,4 @@ STORED AS TEXTFILE;
 
 
 -- Load data into Hive table from hdfs
-LOAD DATA INPATH '/user/historical_stocks_data.csv' INTO TABLE stock_data;
+LOAD DATA INPATH '/input/historical_stocks_data.csv' INTO TABLE stock_data;

@@ -38,7 +38,7 @@ def calculate_stats(values):
     mean_volume = round(sum(volumes) / len(volumes),2)
     return (name[0], percentual_variation, min_low, max_high, mean_volume)
 
- 
+
 parser = argparse.ArgumentParser()
 # input and output paths passed from the command line
 parser.add_argument("--input_path", type=str, help="Input dataset path")
