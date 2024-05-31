@@ -43,7 +43,9 @@ def main():
             first_close = records[0][1]
             last_close = records[-1][1]
             increment = calculate_percentage_change(first_close, last_close)
-            total_ticker_volume += volume
+            for record in records:
+                volume = record[2]
+                total_ticker_volume += volume
             
             # (b) the ticker of the industry which had the greatest percentage increase 
             # in the year (with indication of the increase)
@@ -81,6 +83,7 @@ def main():
     sorted_results = sorted(grouped_results.items(), key=lambda x: x[1][0][3], reverse=True)
 
     for (sector, industry), industry_results in sorted_results:
+        industry_results.sort(key=lambda x: (x[0], x[3]))
         for record in industry_results:
             sector, industry, year, industry_change, max_increment_ticker, max_ticker_volume = record
             print(f"{sector}\t{industry}\t{year}\t{industry_change:.2f}%\t{max_increment_ticker}\t{max_ticker_volume}")
@@ -88,4 +91,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-''' 19:59:17 - 20:09:59'''
+''' 16:09:45 - 16:20:14'''
