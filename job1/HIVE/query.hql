@@ -34,4 +34,4 @@ FROM stock_yearly_stats
 GROUP BY ticker, `name`, `year`, first_close, last_close, min_price, max_price, avg_volume
 ORDER BY ticker, `year`;
 
--- Time taken: 430.711 seconds, Fetched: 91927 row(s)
+-- Time taken: 730.711 seconds, Fetched: 91927 row(s)
