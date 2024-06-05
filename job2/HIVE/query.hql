@@ -7,12 +7,12 @@ SELECT
     low,
     high,
     volume,
-    stock_date,
+    `date` AS stock_date,
     `exchange`,
     name,
     sector,
     industry,
-    YEAR(TO_DATE(stock_date)) AS year
+    YEAR(TO_DATE(`date`)) AS year
 FROM
     stock_data;
 
