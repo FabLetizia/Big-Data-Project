@@ -65,4 +65,17 @@ output_sorted.coalesce(1).saveAsTextFile(output_filepath)
 
 spark.stop()
 
-''' 11:36:02 - 11:37:27'''
+''' 
+tempo esecuzione:
+LOCALE:
+50%: 41 sec
+100%: 85 sec
+150%: 112 sec
+200%: 141 sec
+
+AWS:
+ 50%: 34 sec
+ 100%: 36 sec
+ 150%: 133 sec
+ 200%: 136 sec
+ '''

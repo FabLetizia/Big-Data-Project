@@ -91,4 +91,18 @@ def main():
 if __name__ == "__main__":
     main()
 
-''' 16:09:45 - 16:20:14'''
+''' 
+tempo esecuzione:
+LOCALE:
+50%: 286 sec
+100%: 629 sec
+150%: 804 sec
+200%: 1303 sec
+
+AWS:
+ 50%: 47 sec
+ 100%: 153 sec
+ 150%: 190 sec
+ 200%: 266 sec
+ '''
+

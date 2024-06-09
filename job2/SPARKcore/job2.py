@@ -108,6 +108,22 @@ sorted_results_rdd = spark.sparkContext.parallelize([
 ])
 sorted_results_rdd.coalesce(1).saveAsTextFile(output_filepath)
 spark.stop()
-# 17:03:24 - 17:04:24
+
+'''
+tempo esecuzione:
+LOCALE:
+50%:  43 sec
+100%: 60 sec
+150%: 87 sec
+200%: 102 sec
+
+AWS:
+ 50%: 42 sec
+ 100%: 55 sec
+ 150%: 68 sec
+ 200%: 80 sec
+'''
+
+
 
 

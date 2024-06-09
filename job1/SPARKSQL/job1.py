@@ -47,4 +47,17 @@ result.write.option("delimiter", "\t").csv("/output/job1/spark_sql")
 
 spark.stop()
 
-# start: 16:17:21    end: 16:19:15 
+''' 
+tempo esecuzione:
+LOCALE:
+50%: 58 sec
+100%: 114 sec
+150%: 131 sec
+200%: 162 sec
+
+AWS:
+ 50%: 34 sec
+ 100%: 100 sec
+ 150%: 108 sec
+ 200%: 139 sec
+ '''

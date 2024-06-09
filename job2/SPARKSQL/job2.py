@@ -168,4 +168,17 @@ spark.catalog.dropTempView("industry_max_increase")
 spark.catalog.dropTempView("industry_max_volume")
 spark.catalog.dropTempView("output")
 
-# 11:20:23 - 11:32:03
+'''
+tempo esecuzione:
+LOCALE:
+50%: 312 sec
+100%: 500 sec
+150%: 698 sec
+200%: 821 sec
+
+AWS:
+ 50%: 35 sec
+ 100%: 47 sec
+ 150%: 50 sec
+ 200%: 118 sec
+'''

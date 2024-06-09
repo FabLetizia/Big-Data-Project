@@ -137,3 +137,19 @@ DROP TABLE industry_annual_change;
 DROP TABLE industry_max_increase;
 DROP TABLE industry_max_volume;
 DROP TABLE output;
+
+
+/*  
+tempo esecuzione:
+LOCALE:
+50%: 450 sec
+100%: 899 sec
+150%: 1060 sec
+200%: 1573 sec
+
+AWS:
+ 50%: 163 sec
+ 100%: 355 sec
+ 150%: 471 sec
+ 200%: 667 sec
+  */

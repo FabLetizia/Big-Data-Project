@@ -34,4 +34,18 @@ FROM stock_yearly_stats
 GROUP BY ticker, `name`, `year`, first_close, last_close, min_price, max_price, avg_volume
 ORDER BY ticker, `year`;
 
--- Time taken: 730.711 seconds, Fetched: 91927 row(s)
+/* tempo esecuzione:
+ 
+LOCALE:
+50%: 298 sec
+100%: 730 sec
+150%: 1002 sec
+200%: 1641 sec
+
+AWS:
+ 50%: 160 sec
+ 100%: 340 sec
+ 150%: 327 sec
+ 200%: 462 sec */
+
+
