@@ -10,7 +10,7 @@ def parse_line(line):
     # Extract the fields
     fields = next(csv.reader(StringIO(line), delimiter=';'))
     # Skip the header (first line)
-    if fields[0] == "ticker":
+    if line.startswith("ticker") or len(fields) != 11:
         return None
     ticker = fields[0]
     date = datetime.strptime(fields[6], '%Y-%m-%d')
@@ -23,7 +23,7 @@ def parse_line(line):
     # (key, values)
     return ((ticker, year), (date, close, low, high, volume, name))
  
-''' This function takes the values ​​associated with a key (ticker, year), sorts them by date,
+''' This function takes the values associated with a key (ticker, year), sorts them by date,
 then calculates yearly statistics such as percentage change in price, lowest price, highest price,
 and average volume. Returns a tuple with these statistics.'''
 def calculate_stats(values):
@@ -60,7 +60,6 @@ output = stats_stock_year.map(lambda x: (x[0], x[1]))
 
 output_sorted = output.sortByKey()
 
-# Reduce the number of partitions to 1 before saving the output
 output_sorted.coalesce(1).saveAsTextFile(output_filepath)
 
 spark.stop()

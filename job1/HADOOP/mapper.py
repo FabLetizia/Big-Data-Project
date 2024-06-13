@@ -3,6 +3,7 @@ import sys
 # ticker;open;close;low;high;volume;date;exchange;name;sector;industry 
 for line in sys.stdin:
     line = line.strip()
+    # skip the header
     if line.startswith("ticker"):
         continue
     fields = line.split(';')

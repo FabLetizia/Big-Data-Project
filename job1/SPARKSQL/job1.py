@@ -1,6 +1,4 @@
 from pyspark.sql import SparkSession
-# Import of predefined functions
-from pyspark.sql.functions import year, unix_timestamp, col, min, max, avg, first, last, round
 
 # Spark session
 spark = SparkSession.builder \
@@ -8,7 +6,7 @@ spark = SparkSession.builder \
     .getOrCreate()
 
 # Read data from hdfs
-stock_data = spark.read.csv("/input/historical_stocks_data.csv", header=True, inferSchema=True, sep=';')
+stock_data = spark.read.csv("/input/historical_stocks_data.csv", header=True, sep=';', inferSchema=True)
 
 # Creates the temporary table that allows you to query the stock_data dataframe
 stock_data.createOrReplaceTempView("stock_data")
@@ -31,7 +29,7 @@ SELECT
     ticker,
     name,
     year,
-    ROUND(((last_close - first_close) / first_close) * 100, 2) AS percent_change,
+    ROUND(((last_close - first_close) / first_close) * 100, 2) AS percentage_change,
     min_price,
     max_price,
     ROUND(avg_volume, 2) AS avg_volume
@@ -44,6 +42,8 @@ result = spark.sql(query)
 
 # Store output on hdfs
 result.write.option("delimiter", "\t").csv("/output/job1/spark_sql")
+spark.catalog.dropTempView("stock_data")
+spark.catalog.dropTempView("stock_yearly_stats")
 
 spark.stop()
 

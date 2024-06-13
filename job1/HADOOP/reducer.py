@@ -3,8 +3,8 @@ import sys
 from collections import defaultdict
 
 # Function to calculate the percentage change in the price over the year
-def calculate_percentage_change(start_price, end_price):
-    return ((end_price - start_price) / start_price) * 100
+def calculate_percentage_change(start, end):
+    return ((end - start) / start) * 100 if start != 0 else 0
 
 # Function to parse the input provided by the mapper
 def parse_input_line(line):
