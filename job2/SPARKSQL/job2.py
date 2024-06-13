@@ -8,7 +8,7 @@ spark = SparkSession.builder \
     .getOrCreate()
 
 # Read data from hdfs
-stock_data = spark.read.csv('/user/historical_stocks_data.csv', header=True, sep=';', inferSchema=True)
+stock_data = spark.read.csv('/input/historical_stocks_data.csv', header=True, sep=';', inferSchema=True)
 
 # Creates the temporary table that allows you to query the stock_data dataframe
 stock_data.createOrReplaceTempView("stock_data")
@@ -156,7 +156,7 @@ ORDER BY
 output = spark.sql("SELECT * FROM output")
 
 # Store output on hdfs
-output.write.option("delimiter", "\t").text("/user/spark_sql/output.txt")
+output.write.option("delimiter", "\t").save("/output/job2/spark_sql")
 
 spark.catalog.dropTempView("stock_data")
 spark.catalog.dropTempView("stock_data_year")
@@ -167,6 +167,8 @@ spark.catalog.dropTempView("industry_annual_change")
 spark.catalog.dropTempView("industry_max_increase")
 spark.catalog.dropTempView("industry_max_volume")
 spark.catalog.dropTempView("output")
+
+spark.stop()
 
 '''
 tempo esecuzione:

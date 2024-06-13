@@ -3,6 +3,7 @@ import sys
 import ast
 from collections import defaultdict
 
+# Function to calculate the percentage change in the price over the year
 def calculate_percentage_change(start, end):
     return ((end - start) / start) * 100 if start != 0 else 0
 
@@ -82,6 +83,10 @@ def main():
     # Results grouped by sector and industry and sorted by decreasing percentage change
     sorted_results = sorted(grouped_results.items(), key=lambda x: x[1][0][3], reverse=True)
 
+    # Print the header
+    print("sector\tindustry\tyear\tindustry_change\t(ticker, max_increment)\t(ticker, max_volume)")
+    
+    # Print the data
     for (sector, industry), industry_results in sorted_results:
         industry_results.sort(key=lambda x: (x[0], x[3]))
         for record in industry_results:

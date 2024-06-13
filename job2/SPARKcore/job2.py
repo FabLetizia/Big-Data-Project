@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import argparse
-from pyspark import SparkConf, SparkContext
 from pyspark.sql import SparkSession
 from collections import defaultdict
 
@@ -10,10 +9,10 @@ def calculate_percentage_change(start, end):
 
 def parse_line(line):
     line = line.strip()
-    parts = line.split(';')
-    if line.startswith("ticker") or len(parts) != 11:
+    fields = line.split(';')
+    if line.startswith("ticker") or len(fields) != 11:
         return None
-    ticker, _, close, _, _, volume, date, _, name, sector, industry = parts
+    ticker, _, close, _, _, volume, date, _, _, sector, industry = fields
     year = date[:4]
     if sector and industry:
         key = (sector, industry, year)
@@ -21,7 +20,7 @@ def parse_line(line):
         return (key, value)
     return None
 
-''' This function takes the values ​​associated with a key (industry, sector, year) and for 
+''' This function takes the values associated with a key (industry, sector, year) and for 
 that specific year calculates the percentage increase of the industry, the ticker of the 
 industry with the greatest percentage increase and the ticker of the industry with the 
 greatest volume'''
@@ -102,7 +101,7 @@ for (sector, industry), industry_results in sorted_results:
 
 # Final storing
 sorted_results_rdd = spark.sparkContext.parallelize([
-    f"{sector}\t{industry}\t{year}\t{industry_change:.2f}%\t{max_increment_ticker[0]}\t{max_increment_ticker[1]:.2f}%\t{max_ticker_volume[0]}\t{max_ticker_volume[1]}"
+    f"{sector}\t{industry}\t{year}\t{industry_change:.2f}%\t({max_increment_ticker[0]},{max_increment_ticker[1]:.2f})%\t({max_ticker_volume[0]},{max_ticker_volume[1]})"
     for (sector, industry), industry_results in sorted_results
     for sector, industry, year, industry_change, max_increment_ticker, max_ticker_volume in industry_results
 ])

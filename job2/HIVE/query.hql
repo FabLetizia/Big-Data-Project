@@ -101,9 +101,10 @@ GROUP BY
 -- Final table with all statistics
 CREATE TABLE output AS
 SELECT
+-- sector  industry    year    industry_change (ticker, max_increment) (ticker, max_volume)
     iac.sector,
     iac.industry,
-    iac.year,
+    iac.year AS year,
     iac.industry_percent_change,
     imh.name AS highest_increase_stock,
     imh.highest_percent_change,
